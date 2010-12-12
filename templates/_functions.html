@@ -1,0 +1,41 @@
+$def with (server_infos)
+
+<h1>Functions</h1>
+
+<table class="functions">
+  <tr>
+    <th>Job server</th>
+    <th>Function</th>
+    <th>Jobs</th>
+    <th>Workers</th>
+    <th>Running</th>
+  </tr>
+      
+$for server_info in server_infos:
+  $if server_info['failed']:
+    <tr class="failure">
+  $else:
+    <tr>
+  
+  <th>$server_info['hostport'][0]:$server_info['hostport'][1]</th>
+  $if server_info['failed']:
+    <th>Not responding!</th>
+  $else:
+    <th></th>
+    
+  <th></th>
+  <th></th>
+  <th></th>
+  </tr>
+  
+  $if not server_info['failed']:
+    $for function in server_info['status']:
+      <tr>
+        <td class="server"></td>
+        <td class="function">$function['task']</td>
+        <td>$function['queued']</td>
+        <td>$function['workers']</td>
+        <td>$function['running']</td>
+      </tr>
+      
+</table>
