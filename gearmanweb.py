@@ -82,7 +82,7 @@ class Clients(Tab, app.page):
 class Functions(Tab, app.page):
     path = '/functions'
     def GET(self):
-        # check mysql
+        # check mysql?
         server_infos = _get_info_from_gearman()
         functions_html = render_partial._functions(server_infos)
         return render.functions(functions_html, self.current_tab())
