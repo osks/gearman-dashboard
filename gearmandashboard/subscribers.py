@@ -11,7 +11,7 @@ def create_url_generator(event):
     """
     request = event.request
     context = request.context
-    url_generator = URLGenerator(context, request, qualified=False)
+    url_generator = URLGenerator(context, request, qualified=True)
     request.url_generator = url_generator
     
 
