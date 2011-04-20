@@ -1,0 +1,30 @@
+<h1>Clients</h1>
+
+<table class="clients">
+  <tr>
+    <th>Job server</th>
+    <th>IP</th>
+    <th>File descriptor</th>
+  </tr>
+
+{% for server_info in server_infos %}
+  <tr {% if server_info['failed'] %} class="failure" {% endif %} >
+    
+    <th>{{ server_info['hostport'][0] }}:{{ server_info['hostport'][1] }}</th>
+    <th>
+      {%- if server_info['failed'] -%} Not responding! {%- endif -%}
+    </th>
+    <th></th>
+  </tr>
+  
+  {% if not server_info['failed'] %}
+    {% for client in server_info['clients'] %}
+      <tr>
+        <td></td>
+        <td class="ip">{{ client['ip'] }}</td>
+        <td class="file_descriptor">{{ client['file_descriptor'] }}</td>
+      </tr>
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+</table>
