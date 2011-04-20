@@ -1,0 +1,27 @@
+TODO
+====
+
+Ideas:
+
+- URL: /hosts/$ip (ex: /hosts/127.0.0.1)
+  
+  List all workers *and* clients from that IP, with suitable
+  information. Basically a status page for a host that is using Gearman.
+
+- URL: /servers/$ip/$port/$function (ex: /servers/localhost/4730/reverse)
+  
+  List background jobs in the database (only mysql to start with) with
+  that function. (limit to something like 20 or so). Foreground jobs
+  won't be listed, since they are not persisted to the database.
+  
+  This page will rely on further information about how the gearman
+  server is configured, since we do not have access to the storage
+  normally.
+
+- URL: /servers
+
+  List server information. Not much, but version number is available,
+  and perhaps we can summarize something about the pending jobs or
+  such. It could possibly be the new Overview page, and might be more
+  suitable if you have many servers and/or so many functions/workers
+  that the Overview page gets too messy.

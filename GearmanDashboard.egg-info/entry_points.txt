@@ -1,0 +1,5 @@
+    [paste.app_factory]
+    main = gearmandashboard:main
+
+    [paste.app_install]
+    main = paste.script.appinstall:Installer
