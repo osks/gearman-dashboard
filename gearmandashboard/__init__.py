@@ -1,19 +1,19 @@
 from pyramid.config import Configurator
 import akhet
 
+
+from pyramid.url import static_url
+from pyramid.threadlocal import get_current_request
+
+
+def static_url_filter(path, **kw):
+    request = get_current_request()
+    return static_url(path, request, **kw)
+
+
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
-
-    # Here you can insert any code to modify the ``settings`` dict.
-    # You can:
-    # * Add additional keys to serve as constants or "global variables" in the
-    #   application.
-    # * Set default values for settings that may have been omitted.
-    # * Override settings that you don't want the user to change.
-    # * Raise an exception if a setting is missing or invalid.
-    # * Convert values from strings to their intended type.
-
     # Create the Pyramid Configurator.
     config = Configurator(settings=settings)
     config.include("pyramid_handlers")

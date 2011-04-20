@@ -1,4 +1,7 @@
-0.0
+0.1
 ---
 
--  Initial version
+- First release with a version number.
+
+- Rewritten to use Pyramid, instead of web.py, for better deployment
+  options (such as under prefixes)

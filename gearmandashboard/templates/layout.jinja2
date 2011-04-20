@@ -2,19 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>$content.title | Gearman Dashboard</title>
+    <title>Gearman Dashboard - {% block title %}{% endblock %}</title>    
     
-    <link rel="stylesheet" href="static/reset.css" type="text/css"
-          media="screen" />
-    <link rel="stylesheet" href="static/style.css" type="text/css"
-          media="screen" />
-    
+    <link rel="stylesheet" href="{{ 'gearmandashboard:static/stylesheets/reset.css'|static_url }}"
+          type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ 'gearmandashboard:static/stylesheets/style.css'|static_url }}"
+          type="text/css" media="screen" />
   </head>
   <body>
     <div class="header">
       <ul class="nav">
-        $for name, path in tabs:
-          $:print_tab(name, path, content.current_tab)
+        {% for title, url in tabs %}
+        <li {% if title == current_tab %} class="current" {% endif %}>
+          <a href="{{ url }}">{{ title|capitalize }}</a>
+        </li>
+        {% endfor %}
       </ul>
     </div>
     
@@ -24,7 +26,11 @@
 
 
     <div id="footer">
-      <p><a href="http://gearman.org/">Gearman</a> Dashboard</p>
+      <p>
+        <a href="https://github.com/osks/gearman-dashboard">Gearman Dashboard</a>
+        -
+        &copy 2011 Oskar Skoog
+      </p>
     </div>
 
   </body>
